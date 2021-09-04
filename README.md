@@ -32,7 +32,7 @@ Students can
 ## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Check out the deployed site](#your-link)
 - [Wireframes](#your-link)
-- [Project Board](#your-link)
+- [Project Board](#https://dbdiagram.io/d/612ec5de825b5b0146ed7acd)
 
 ## Code Snippet <!-- OPTIONAL, but doesn't hurt -->
 PLACE CODE SNIPPET HERE
