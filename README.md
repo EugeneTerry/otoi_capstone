@@ -4,11 +4,7 @@
 
 This app will help students keep track of their assignments right at their fingertips.
 
-
  [View App](#your-link)
-
-## Get Started <!-- OPTIONAL, but doesn't hurt -->
-PLACE CODE SNIPPET HERE
 
 ## About the User <!-- This is a scaled down user persona -->
 The user will be a typical High School or Middle School student who needs to keep up with their assignments.
@@ -35,7 +31,7 @@ Students can:
 - [Project Board](https://dbdiagram.io/d/612ec5de825b5b0146ed7acd)
 
 ## Code Snippet <!-- OPTIONAL, but doesn't hurt -->
-PLACE CODE SNIPPET HERE
+<PLACE CODE SNIPPET HERE>
 
 ## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
 <img width="1148" alt="screenshot of assignment dashboard" src="your-link.png"> 
