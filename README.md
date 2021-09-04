@@ -18,9 +18,9 @@ Things the user will be able to do on this site.
 
 Students can 
 - Add, edit and delete
--> Assignments
--> Teachers
--> Classes 
+- - Assignments
+- - Teachers
+- - Classes 
 - Sort assignments by due date
 - Mark “Started” and “Finished”
 - See a dashboard of the recent and due assignments on startup
