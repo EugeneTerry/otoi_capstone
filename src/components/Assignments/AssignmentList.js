@@ -87,8 +87,8 @@ export const AssignmentList = () => {
               </div>
             )
           })}
-          <button className="assignmentBtn" onclick={() => history.push("/assignments/create")}></button>
-          Add New Assignment
+          <button className="assignmentBtn" onclick={() => history.push("/assignments/create")}>Add New Assignment</button>
+          
         </section>
       </div>
     </>
