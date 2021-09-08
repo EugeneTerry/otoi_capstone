@@ -8,7 +8,7 @@ export const AssignmentProvider = (props) => {
     const apiURL = "http://localhost:8088"
    
     const getAssignments = () => {
-        return fetch(`${apiURL}/assignments?_expand=class`)
+        return fetch(`${apiURL}/assignments?_expand=course`)
         .then(res => res.json())
         .then(setAssignments)
     }
@@ -18,8 +18,8 @@ export const AssignmentProvider = (props) => {
         .then(res => res.json())
     }
 
-    const getAssignmentsByClassId = (classId) => {
-      return fetch(`${apiURL}/assignments/${classId}`)
+    const getAssignmentsByCourseId = (courseId) => {
+      return fetch(`${apiURL}/assignments/${courseId}`)
       .then(res => res.json())
   }
 
@@ -60,7 +60,7 @@ export const AssignmentProvider = (props) => {
 
     return (
         <AssignmentContext.Provider value={{
-          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByClassId,searchTerms, setSearchTerms
+          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByCourseId,searchTerms, setSearchTerms
         }}>
             {props.children}
         </AssignmentContext.Provider>

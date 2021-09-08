@@ -21,7 +21,7 @@ export const AssignmentList = () => {
 
   useEffect(() => {
     if(searchTerms !=="") {
-      const subset = assignments.filter(assignment => assignments.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.classId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.classId.teacherId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.notes.toLowerCase().includes(searchTerms.toLowerCase()))
+      const subset = assignments.filter(assignment => assignments.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.courseId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.courseId.teacherId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.notes.toLowerCase().includes(searchTerms.toLowerCase()))
       setFiltered(subset)
     } else {
       setFiltered(assignments)
@@ -48,10 +48,10 @@ export const AssignmentList = () => {
                   Title:{assignment.title}
                 </Link>
                 <div
-                  key={`assignmentClassList_${assignment.id}`}
-                  className="assignmentClassListInfo"
+                  key={`assignmentCourseList_${assignment.id}`}
+                  className="assignmentCourseListInfo"
                 >
-                  Class: {assignment.classId.name}
+                  Class: {assignment.courseId.name}
                 </div>
                 <div
                   key={`assignmentNotesList__${assignment.id}`}
