@@ -10,11 +10,11 @@ export const NavBar =() =>{
   }
   
   return(
-    <nav className="navbar navbar-light bg-light">
-     <ul className="navbar">
-       <li className="navbar_item"><Link className="navbar-link" to="/">Assignments</Link></li>
-       <li className="navbar_item"><Link className="navbar-link" to="/classes">Classes</Link></li>
-       <li className="navbar_item"><Link className="navbar-link" to="/past">Past Due Assignments</Link></li>
+    <nav className="navbar bg-green text-white flex-md-nowrap p-0 shadow">
+     <ul className="nav nav-pills nav-fill">
+       <li className="nav_item"><Link className="nav-link" to="/">Assignments</Link></li>
+       <li className="navbar_item"><Link className="nav-link" to="/classes">Classes</Link></li>
+       <li className="navbar_item"><Link className="nav-link" to="/past">Past Due Assignments</Link></li>
        <li className="navbar_item"><button className="nav-link" onClick={LogOut}>Logout</button></li>
      </ul>
     </nav>

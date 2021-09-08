@@ -1,19 +1,19 @@
 import React, {useEffect, useContext, useState} from "react";
-import { usehistory, Link} from "react-router-dom"
+import { useHistory, Link} from "react-router-dom"
 import { AssignmentContext } from "./AssignmentProvider";
 import "./Assignment.css"
 
 export const AssignmentList = () => {
   const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
   const currentUser = (parseInt(sessionStorage.getItem("otoi_user")))
-  const [setFiltered] = useState ([])
-  const history = usehistory()
+  const [filteredAssignments, setFiltered] = useState ([])
+  const history = useHistory()
 
   useEffect(() => {
     getAssignments()
   }, [])
 
-  const filteredAssignments = assignments.filter(assignments => assignments.userId === currentUser)
+  // const filteredAssignments = assignments.filter(assignments => assignments.userId === currentUser)
 
   const {setSearchTerms} = useContext(AssignmentContext)
 
@@ -21,7 +21,7 @@ export const AssignmentList = () => {
 
   useEffect(() => {
     if(searchTerms !=="") {
-      const subset = assignments.filter(assignment => assignments.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignments.classId.toLowerCase().includes(searchTerms.toLowerCase()) || assignments.classId.teacherId.toLowerCase().includes(searchTerms.toLowerCase()) || assignments.notes.toLowerCase().includes(searchTerms.toLowerCase()))
+      const subset = assignments.filter(assignment => assignments.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.classId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.classId.teacherId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.notes.toLowerCase().includes(searchTerms.toLowerCase()))
       setFiltered(subset)
     } else {
       setFiltered(assignments)

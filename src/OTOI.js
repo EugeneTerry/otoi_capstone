@@ -1,11 +1,11 @@
 import React from "react"
 import {Route, Redirect} from "react-router-dom"
 import {NavBar} from "./nav/NavBar"
-import {ApplicationViews} from "./ApplicationViews"
-import {Login} from "./auth/Login"
+import { ApplicationViews } from "./components/ApplicationViews"
+import {Login} from "./components/auth/Login"
 import {Register} from "./components/auth/Register"
 
-export const OTOI =()=>(
+export const OTOI = () => (
   <>
     <Route
       render={() => {

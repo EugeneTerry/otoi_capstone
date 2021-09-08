@@ -4,10 +4,11 @@ export const AssignmentContext = createContext()
 
 export const AssignmentProvider = (props) => {
     const [assignments, setAssignments] = useState([])
+    const [searchTerms, setSearchTerms] = useState("")
     const apiURL = "http://localhost:8088"
    
     const getAssignments = () => {
-        return fetch(`${apiURL}/assignments`)
+        return fetch(`${apiURL}/assignments?_expand=class`)
         .then(res => res.json())
         .then(setAssignments)
     }
@@ -59,7 +60,7 @@ export const AssignmentProvider = (props) => {
 
     return (
         <AssignmentContext.Provider value={{
-          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByClassId
+          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByClassId,searchTerms, setSearchTerms
         }}>
             {props.children}
         </AssignmentContext.Provider>
