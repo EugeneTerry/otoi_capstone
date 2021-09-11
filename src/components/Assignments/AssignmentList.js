@@ -5,7 +5,7 @@ import "./Assignment.css"
 
 export const AssignmentList = () => {
   const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
-  const currentUser = (parseInt(sessionStorage.getItem("otoi_user")))
+  // const currentUser = (parseInt(sessionStorage.getItem("otoi_user")))
   const [filteredAssignments, setFiltered] = useState ([])
   const history = useHistory()
 
@@ -51,7 +51,7 @@ export const AssignmentList = () => {
                   key={`assignmentCourseList_${assignment.id}`}
                   className="assignmentCourseListInfo"
                 >
-                  Class: {assignment.courseId.name}
+                  Course: {assignment.courseId.name}
                 </div>
                 <div
                   key={`assignmentNotesList__${assignment.id}`}
@@ -81,13 +81,13 @@ export const AssignmentList = () => {
                   key={`assignmentFinishedList__${assignment.id}`}
                   className="assignmentFinishedListInfo"
                 >
-                  Started: {assignment.finished}
+                  Finished: {assignment.finished}
                 </div>
                 
               </div>
             )
           })}
-          <button className="assignmentBtn" onclick={() => history.push("/assignments/create")}>Add New Assignment</button>
+          <button className="assignmentBtn" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
           
         </section>
       </div>

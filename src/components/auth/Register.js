@@ -43,8 +43,8 @@ export const Register = () => {
                         .then(res => res.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
-                                // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
-                                sessionStorage.setItem("nutshell_user", createdUser.id)
+                                
+                                sessionStorage.setItem("otoi_user", createdUser.id)
                                 history.push("/")
                             }
                         })
@@ -59,7 +59,7 @@ export const Register = () => {
     return (
         <main style={{ textAlign: "center" }}>
 
-            <dialog className="dialog dialog--password" ref={conflictDialog}>
+            <dialog className="dialog dialog--password" open={conflictDialog}>
                 <div>Account with that email address already exists</div>
                 <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
             </dialog>
