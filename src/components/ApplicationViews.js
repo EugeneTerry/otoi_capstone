@@ -14,7 +14,7 @@ export const ApplicationViews = () => {
         <Route exact path="/">
           <AssignmentList/>
         </Route>
-        <Route exact path="assignments">
+        <Route exact path="/assignments">
           <AssignmentSearch/>
           <AssignmentList/>
         </Route>
