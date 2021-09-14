@@ -28,5 +28,12 @@ export const CourseProvider = (props) => {
     .then(response => response.json())
 }
 
+  return(
+    <CourseContext.Provider value={{
+      courses, addCourse, getCoursesByTeacherId, getCourses,
+    }}>
+      {props.children}
+    </CourseContext.Provider>
+  )
 
 }

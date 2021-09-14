@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AssignmentContext } from "./AssignmentProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { UserContext } from "../Users/UserProvider";
-import { CourseContext } from "../Classes/CourseProvider";
+import { CourseContext } from "../Classes/CourseProvider"
 
 export const AssignmentForm = () => {
-  const {users, getUsers} = useContext(UserContext)
   const {courses, getCourses} = useContext(CourseContext)
-  const {addAssignment, updateAssignment, getAssignmentById} = useContext(UserContext)
-    useContext(AssignmentContext)
+  const {addAssignment, updateAssignment, getAssignmentById} = useContext(AssignmentContext)
   
   const [assignment, setAssignment] =useState({
     title: "",
@@ -58,7 +55,7 @@ export const AssignmentForm = () => {
         }).then(() => history.push(`/assignments/detail/${assignment.id}`));
       } else {
         addAssignment({
-          userId: parseInt(assignment.userId),
+          userId: (parseInt(sessionStorage.getItem("otoi_user"))),
           courseId: parseInt(assignment.courseId),
           title: assignment.title,
           dateGiven: assignment.dateGiven,
@@ -70,7 +67,7 @@ export const AssignmentForm = () => {
     }
   }
   useEffect(() => {
-    getUsers().then(getCourses).then(() => {
+    getCourses().then(() => {
       if(assignmentId) {
         getAssignmentById(assignmentId).then((assignment) => {
           setAssignment(assignment)
