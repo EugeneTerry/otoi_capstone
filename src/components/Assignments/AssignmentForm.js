@@ -48,8 +48,8 @@ export const AssignmentForm = () => {
       if (assignment.id) {
         updateAssignment({
           id: assignment.id,
-          userId,
-          courseId,
+          userId: parseInt(assignment.userId),
+          courseId: parseInt(assignment.courseId),
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
@@ -58,8 +58,8 @@ export const AssignmentForm = () => {
         }).then(() => history.push(`/assignments/detail/${assignment.id}`));
       } else {
         addAssignment({
-          userId: assignment.userId,
-          courseId: assignment.courseId,
+          userId: parseInt(assignment.userId),
+          courseId: parseInt(assignment.courseId),
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
@@ -70,7 +70,7 @@ export const AssignmentForm = () => {
     }
   }
   useEffect(() => {
-    getUsers().then(() => {
+    getUsers().then(getCourses).then(() => {
       if(assignmentId) {
         getAssignmentById(assignmentId).then((assignment) => {
           setAssignment(assignment)
