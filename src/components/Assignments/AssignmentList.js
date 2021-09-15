@@ -5,7 +5,7 @@ import "./Assignment.css"
 
 export const AssignmentList = () => {
   const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
-  // const currentUser = (parseInt(sessionStorage.getItem("otoi_user")))
+  const currentUserId = sessionStorage.getItem("otoi_user")
   const [filteredAssignments, setFiltered] = useState ([])
   const history = useHistory()
 
@@ -13,15 +13,16 @@ export const AssignmentList = () => {
     getAssignments()
   }, [])
 
-  // const filteredAssignments = assignments.filter(assignments => assignments.userId === currentUser)
-
   const {setSearchTerms} = useContext(AssignmentContext)
+  const currentUserAssignment = filteredAssignments.filter(assignment => {
+    return assignment.userId === parseInt(currentUserId)
+  })
 
   useEffect(() => {setSearchTerms("")}, [])
 
   useEffect(() => {
     if(searchTerms !=="") {
-      const subset = assignments.filter(assignment => assignments.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.courseId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.courseId.teacherId.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.notes.toLowerCase().includes(searchTerms.toLowerCase()))
+      const subset = assignments.filter(assignment => assignment.title.toLowerCase().includes(searchTerms.toLowerCase()) || assignment.course.name.toLowerCase().includes(searchTerms.toLowerCase()))
       setFiltered(subset)
     } else {
       setFiltered(assignments)
@@ -38,7 +39,10 @@ export const AssignmentList = () => {
             onKeyUp={(e) => setSearchTerms(e.currentTarget.value)}
             placeholder="🔍" />
           </div>
-          {filteredAssignments.map((assignment) => {
+          {currentUserAssignment.map((assignment) => {
+
+            const status = assignment.started; 
+            //create an if statement here for status
             return (
               <div className="linkDivAssignmentList"
                 key={`assignmentDivList=${assignment.id}`}>
@@ -51,7 +55,7 @@ export const AssignmentList = () => {
                   key={`assignmentCourseList_${assignment.id}`}
                   className="assignmentCourseListInfo"
                 >
-                  Course: {assignment.courseId.name}
+                  Course: {assignment.course.name}
                 </div>
                 <div
                   key={`assignmentNotesList__${assignment.id}`}
@@ -75,15 +79,8 @@ export const AssignmentList = () => {
                   key={`assignmentStartedList__${assignment.id}`}
                   className="assignmentStartedListInfo"
                 >
-                  Started: {assignment.started}
+                  Status: {status}
                 </div>
-                <div
-                  key={`assignmentFinishedList__${assignment.id}`}
-                  className="assignmentFinishedListInfo"
-                >
-                  Finished: {assignment.finished}
-                </div>
-                
               </div>
             )
           })}

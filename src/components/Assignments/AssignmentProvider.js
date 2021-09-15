@@ -34,7 +34,7 @@ export const AssignmentProvider = (props) => {
       return await response.json()
     }
 
-    const updateAssignment = assignmentToUpdate => {
+    const updateAssignment = (assignmentToUpdate) => {
         return fetch((`${apiURL}/assignments/${assignmentToUpdate.id}`), {
             method: "PUT",
             headers: {

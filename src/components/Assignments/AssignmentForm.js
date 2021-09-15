@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AssignmentContext } from "./AssignmentProvider";
 import { useHistory, useParams } from "react-router-dom";
-import { UserContext } from "../Users/UserProvider";
-import { CourseContext } from "../Classes/CourseProvider";
+import { CourseContext } from "../Classes/CourseProvider"
 
 export const AssignmentForm = () => {
-  const {users, getUsers} = useContext(UserContext)
   const {courses, getCourses} = useContext(CourseContext)
-  const {addAssignment, updateAssignment, getAssignmentById} = useContext(UserContext)
-    useContext(AssignmentContext)
+  const {addAssignment, updateAssignment, getAssignmentById} = useContext(AssignmentContext)
   
   const [assignment, setAssignment] =useState({
     title: "",
@@ -33,17 +30,10 @@ export const AssignmentForm = () => {
     setAssignment(newAssignment);
   };
   const handleClickSaveAssignment = (event) => {
+    event.preventDefault()
     const userId = parseInt(assignment.userId)
     const courseId = parseInt(assignment.courseId)
 
-    if (
-      userId === 0 ||
-      assignment.title === "" ||
-      courseId === 0 ||
-      assignment.notes === ""
-    ) {
-      window.alert("Please enter a student, title, course and notes please")
-    } else {
       setIsLoading (true);
       if (assignment.id) {
         updateAssignment({
@@ -53,24 +43,26 @@ export const AssignmentForm = () => {
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
+          notes: assignment.notes,
           started: assignment.started,
           finished: assignment.finished
         }).then(() => history.push(`/assignments/detail/${assignment.id}`));
       } else {
         addAssignment({
-          userId: parseInt(assignment.userId),
+          userId: (parseInt(sessionStorage.getItem("otoi_user"))),
           courseId: parseInt(assignment.courseId),
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
+          notes: assignment.notes,
           started: assignment.started,
           finished: assignment.finished
         }).then(() => history.push("/assignments"))
       }
-    }
+    
   }
   useEffect(() => {
-    getUsers().then(getCourses).then(() => {
+    getCourses().then(() => {
       if(assignmentId) {
         getAssignmentById(assignmentId).then((assignment) => {
           setAssignment(assignment)
@@ -83,7 +75,7 @@ export const AssignmentForm = () => {
   }, [])
 
   return (
-    <form className = "assignmentSecList">
+    <form onSubmit={handleClickSaveAssignment} className = "assignmentSecList">
       <h2 className= "assignmentForm_title"> New Assignment</h2>
       <fieldset>
         <div className="form=group">
@@ -113,11 +105,13 @@ export const AssignmentForm = () => {
             onChange= {handleControlledInputChange}
             >
               <option value="0"> Select Course </option>
-              {courses.map((course) => (
-                <option key={course.id} value={course.id}>
-                  {course.name}
-                </option>
-              ))}
+              {
+                courses.map((course) => (
+                  <option key={course.id} value={course.id}>
+                    {course.name}
+                  </option>
+                ))
+              }
             </select>          
         </div>
       </fieldset>
@@ -154,23 +148,20 @@ export const AssignmentForm = () => {
           <label htmlFor="notes"> Assignment Notes: </label>
           <input
             type="text"
-            id="synopsis"
+            id="notes"
             required
             autoFocus
             className="form-control"
             placeholder="Assignment Notes"
-            value={assignment.notes}
             onChange={handleControlledInputChange}
+            defaultValue={assignment.notes}
           />
         </div>
       </fieldset>
       <div className="assignmentFormBtn">
         <button className="btn btn-primary"
         disabled={isLoading}
-        onClick={(event) => {
-          event.preventDefault()
-          handleClickSaveAssignment()
-        }}>
+        type="submit">
           {assignmentId ? <> Save Assignment </> : <> Add Assignment</>}
         </button>
 
