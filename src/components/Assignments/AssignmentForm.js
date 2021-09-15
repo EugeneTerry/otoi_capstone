@@ -43,6 +43,7 @@ export const AssignmentForm = () => {
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
+          notes: assignment.notes,
           started: assignment.started,
           finished: assignment.finished
         }).then(() => history.push(`/assignments/detail/${assignment.id}`));
@@ -53,6 +54,7 @@ export const AssignmentForm = () => {
           title: assignment.title,
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
+          notes: assignment.notes,
           started: assignment.started,
           finished: assignment.finished
         }).then(() => history.push("/assignments"))
@@ -146,7 +148,7 @@ export const AssignmentForm = () => {
           <label htmlFor="notes"> Assignment Notes: </label>
           <input
             type="text"
-            id="synopsis"
+            id="notes"
             required
             autoFocus
             className="form-control"
