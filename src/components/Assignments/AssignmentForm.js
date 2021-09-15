@@ -30,17 +30,10 @@ export const AssignmentForm = () => {
     setAssignment(newAssignment);
   };
   const handleClickSaveAssignment = (event) => {
+    event.preventDefault()
     const userId = parseInt(assignment.userId)
     const courseId = parseInt(assignment.courseId)
 
-    if (
-      userId === 0 ||
-      assignment.title === "" ||
-      courseId === 0 ||
-      assignment.notes === ""
-    ) {
-      window.alert("Please enter a student, title, course and notes please")
-    } else {
       setIsLoading (true);
       if (assignment.id) {
         updateAssignment({
@@ -64,7 +57,7 @@ export const AssignmentForm = () => {
           finished: assignment.finished
         }).then(() => history.push("/assignments"))
       }
-    }
+    
   }
   useEffect(() => {
     getCourses().then(() => {
@@ -80,7 +73,7 @@ export const AssignmentForm = () => {
   }, [])
 
   return (
-    <form className = "assignmentSecList">
+    <form onSubmit={handleClickSaveAssignment} className = "assignmentSecList">
       <h2 className= "assignmentForm_title"> New Assignment</h2>
       <fieldset>
         <div className="form=group">
@@ -110,11 +103,13 @@ export const AssignmentForm = () => {
             onChange= {handleControlledInputChange}
             >
               <option value="0"> Select Course </option>
-              {courses.map((course) => (
-                <option key={course.id} value={course.id}>
-                  {course.name}
-                </option>
-              ))}
+              {
+                courses.map((course) => (
+                  <option key={course.id} value={course.id}>
+                    {course.name}
+                  </option>
+                ))
+              }
             </select>          
         </div>
       </fieldset>
@@ -156,18 +151,15 @@ export const AssignmentForm = () => {
             autoFocus
             className="form-control"
             placeholder="Assignment Notes"
-            value={assignment.notes}
             onChange={handleControlledInputChange}
+            defaultValue={assignment.notes}
           />
         </div>
       </fieldset>
       <div className="assignmentFormBtn">
         <button className="btn btn-primary"
         disabled={isLoading}
-        onClick={(event) => {
-          event.preventDefault()
-          handleClickSaveAssignment()
-        }}>
+        type="submit">
           {assignmentId ? <> Save Assignment </> : <> Add Assignment</>}
         </button>
 

@@ -7,7 +7,7 @@ export const CourseProvider = (props) => {
   const apiURL = "http://localhost:8088"
 
   const getCourses = () => {
-    return fetch(`${apiURL}/courses`)
+    return fetch(`${apiURL}/courses?_expand=teacher`)
     .then(res => res.json())
     .then(setCourses)
   }
@@ -17,13 +17,13 @@ export const CourseProvider = (props) => {
     .then(res => res.json())
   }
 
-  const addCourse = course => {
+  const addCourse = (course) => {
     return fetch(`${apiURL}/courses`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(course)
+        body: JSON.stringify(course),
     })
     .then(response => response.json())
 }

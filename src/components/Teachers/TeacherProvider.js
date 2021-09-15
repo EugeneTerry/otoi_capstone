@@ -22,6 +22,15 @@ export const TeacherProvider = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(teacherObj),
-    }).then((res) => res.json().then(getTeachers));
+    })
+      .then((res) => res.json()
+      .then(getTeachers));
   };
+    return (
+      <TeacherContext.Provider value ={{
+        teachers, addTeacher, getTeacherById, getTeachers
+      }}>
+        {props.children}
+      </TeacherContext.Provider>
+    )
 };
