@@ -7,6 +7,8 @@ import { UserProvider } from "./Users/UserProvider"
 import { AssignmentForm } from "./Assignments/AssignmentForm"
 import { CourseProvider } from "./Classes/CourseProvider"
 import { CourseList } from "./Classes/CourseList"
+import { SchoolProvider } from "./Schools/SchoolProvider"
+import { SchoolList } from "./Schools/SchoolList"
 
 export const ApplicationViews = () => {
   return (
@@ -35,6 +37,12 @@ export const ApplicationViews = () => {
       </Route>
       </CourseProvider>
     </UserProvider>
+
+    <SchoolProvider>
+      <Route exact path ="/schools">
+        <SchoolList/>
+      </Route>
+    </SchoolProvider>
     </>
   )
 }

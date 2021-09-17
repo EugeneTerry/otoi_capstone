@@ -1,5 +1,4 @@
 import React, {useEffect, useContext} from "react";
-// import { useHistory, Link } from "react-router-dom";
 import { CourseContext } from "./CourseProvider";
 import "./Course.css"
 
