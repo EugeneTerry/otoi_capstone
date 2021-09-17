@@ -1,9 +1,11 @@
 import React, {useEffect, useContext} from "react";
+import { useHistory } from "react-router";
 import { SchoolContext } from "./SchoolProvider";
 
 export const SchoolList = () => {
   const {schools, getSchools} = useContext
   (SchoolContext)
+  const history= useHistory()
 
   useEffect(() => {
     getSchools()
@@ -17,10 +19,11 @@ export const SchoolList = () => {
           {schools.map((school) =>{
             return(
               <div className="school" id ={`school--${school.id}`}>
-                <div className="school__name">{school.name}</div>
+                <div className="school__name">School Name: {school.name}</div>
               </div>
             )
           })}
+          <button className="schoolBtn" onClick={() => history.push("/schools/create")}>Add New School</button>
         </section>
       </div>
     </>

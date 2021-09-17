@@ -78,7 +78,7 @@ export const AssignmentForm = () => {
     <form onSubmit={handleClickSaveAssignment} className = "assignmentSecList">
       <h2 className= "assignmentForm_title"> New Assignment</h2>
       <fieldset>
-        <div className="form=group">
+        <div className="form_group">
           <label htmlFor="title">Assignment Title</label>
           <input
             type="text"

@@ -9,6 +9,7 @@ import { CourseProvider } from "./Classes/CourseProvider"
 import { CourseList } from "./Classes/CourseList"
 import { SchoolProvider } from "./Schools/SchoolProvider"
 import { SchoolList } from "./Schools/SchoolList"
+import { SchoolForm } from "./Schools/SchoolForm"
 
 export const ApplicationViews = () => {
   return (
@@ -41,6 +42,9 @@ export const ApplicationViews = () => {
     <SchoolProvider>
       <Route exact path ="/schools">
         <SchoolList/>
+      </Route>
+      <Route exact path="/schools/create">
+        <SchoolForm/>
       </Route>
     </SchoolProvider>
     </>

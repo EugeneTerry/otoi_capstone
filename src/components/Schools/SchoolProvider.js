@@ -12,14 +12,20 @@ export const SchoolProvider = (props) => {
       .then(setSchools);
   };
 
-  const addSchool = (school) => {
-    return fetch(`${apiURL}/schools`, {
+  const getSchoolById = async (schoolId) => {
+    const res = await fetch(`${apiURL}/schools/${schoolId}`)
+  return await res.json()
+}
+
+  const addSchool = async (school) => {
+    const res = await fetch(`${apiURL}/schools`, {
       method: "POST",
       header: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(school),
-    }).then((res) => res.json());
+    });
+    return await res.json();
   };
   return (
     <SchoolContext.Provider
@@ -27,6 +33,7 @@ export const SchoolProvider = (props) => {
         schools,
         getSchools,
         addSchool,
+        getSchoolById
       }}
     >
       {props.children}
