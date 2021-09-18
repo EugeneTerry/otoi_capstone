@@ -50,7 +50,7 @@ export const AssignmentProvider = (props) => {
       return await res.json()
     }
 
-    const deleteAssignment = (assignmentId) => {
+    const deleteAssignments = (assignmentId) => {
         return fetch((`${apiURL}/assignments/${assignmentId}`), {
             method: "DELETE"
         })
@@ -60,7 +60,7 @@ export const AssignmentProvider = (props) => {
 
     return (
         <AssignmentContext.Provider value={{
-          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByCourseId,searchTerms, setSearchTerms
+          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignments, getAssignmentsByCourseId,searchTerms, setSearchTerms
         }}>
             {props.children}
         </AssignmentContext.Provider>

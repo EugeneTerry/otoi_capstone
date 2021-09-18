@@ -17,15 +17,15 @@ export const SchoolProvider = (props) => {
   return await res.json()
 }
 
-  const addSchool = async (school) => {
-    const res = await fetch(`${apiURL}/schools`, {
+  const addSchool = async school => {
+    const response = await fetch(`${apiURL}/schools`, {
       method: "POST",
       header: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(school),
     });
-    return await res.json();
+    return await response.json();
   };
   return (
     <SchoolContext.Provider

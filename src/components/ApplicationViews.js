@@ -10,6 +10,7 @@ import { CourseList } from "./Classes/CourseList"
 import { SchoolProvider } from "./Schools/SchoolProvider"
 import { SchoolList } from "./Schools/SchoolList"
 import { SchoolForm } from "./Schools/SchoolForm"
+import { AssignmentDetail } from "./Assignments/AssignmentDetail"
 
 export const ApplicationViews = () => {
   return (
@@ -31,6 +32,9 @@ export const ApplicationViews = () => {
       <Route exact path="/assignments/edit/:assignmentId(\d+)">
         <AssignmentForm/>
       </Route>
+      <Route exact path="/assignments/detail/:assignmentId(\d+)">
+        <AssignmentDetail/>
+      </Route>
       </AssignmentProvider>
 
       <Route exact path="/courses"> 
@@ -44,6 +48,9 @@ export const ApplicationViews = () => {
         <SchoolList/>
       </Route>
       <Route exact path="/schools/create">
+        <SchoolForm/>
+      </Route>
+      <Route exact path="/schools/edit/:schoolId(\d+)">
         <SchoolForm/>
       </Route>
     </SchoolProvider>

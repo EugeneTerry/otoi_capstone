@@ -16,7 +16,7 @@ export const SchoolForm = () => {
 
   const handleControlInputChange = (e) => {
     const newSchool = { ...school }
-    newSchool[e.target.Id] = e.target.value
+    newSchool[e.target.id] = e.target.value
     setSchool(newSchool)
   }
   const handleClickSaveSchool = (e) => {
@@ -52,14 +52,15 @@ export const SchoolForm = () => {
       <fieldset>
         <div className="form-group">
           <label htmlFor ="name">Input School Name</label>
-          <input type="text"
+          <input 
+          type="text"
           id="name"
           required
           autoFocus
           className="form-control"
           placeholder="School name"
           onChange={handleControlInputChange}
-          defaultValue={school.name}/>
+          value={school.name}/>
         </div>
       </fieldset>
       <div className="schoolFormBtn">
