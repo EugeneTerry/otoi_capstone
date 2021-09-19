@@ -15,8 +15,7 @@ export const AssignmentForm = () => {
     dateGiven: "",
     dateDue: "",
     notes: "",
-    started: true,
-    finished: false
+    status:"started"
 
   })
 
@@ -45,8 +44,8 @@ export const AssignmentForm = () => {
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
           notes: assignment.notes,
-          started: assignment.started,
-          finished: assignment.finished
+          status: assignment.status
+          
         }).then(() => history.push(`/assignments/detail/${assignment.id}`));
       } else {
         addAssignment({
@@ -56,8 +55,8 @@ export const AssignmentForm = () => {
           dateGiven: assignment.dateGiven,
           dateDue: assignment.dateDue,
           notes: assignment.notes,
-          started: assignment.started,
-          finished: assignment.finished
+          status: assignment.status
+          
         }).then(() => history.push("/assignments"))
       }
     

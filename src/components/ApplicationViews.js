@@ -3,7 +3,7 @@ import { Route } from "react-router-dom"
 
 import { AssignmentList } from "./Assignments/AssignmentList"
 import { AssignmentProvider } from "./Assignments/AssignmentProvider"
-import { AssignmentSearch } from "./Assignments/AssignmentSearch"
+// import { AssignmentSearch } from "./Assignments/AssignmentSearch"
 import { AssignmentForm } from "./Assignments/AssignmentForm"
 import { AssignmentDetail } from "./Assignments/AssignmentDetail"
 
@@ -32,7 +32,7 @@ export const ApplicationViews = () => {
           <AssignmentList/>
         </Route>
         <Route exact path="/assignments">
-          <AssignmentSearch/>
+          {/* <AssignmentSearch/> */}
           <AssignmentList/>
         </Route>
         <Route exact path="/assignments/create">
