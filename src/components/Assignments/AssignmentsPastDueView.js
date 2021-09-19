@@ -16,7 +16,7 @@ export const AssignmentList = () => {
 
   const {setSearchTerms} = useContext(AssignmentContext)
   const currentUserAssignment = filteredAssignments.filter(assignment => {
-    return assignment.userId === parseInt(currentUserId)||assignment.dateDue === assignment.dateGiven
+    return assignment.userId === parseInt(currentUserId)||assignment.dateDue > new Date()
   })
 
   useEffect(() => {setSearchTerms("")}, [])

@@ -32,7 +32,7 @@ export const AssignmentDetail = () => {
       <div className="assignmentDetail__course">
         Course: {assignment.course.name}
       </div>
-      <div className="assignmentDetail__teacher">Teacher: <a href = {assignment.teacher?.email}>{assignment.teacher?.name}</a></div>
+      <div className="assignmentDetail__teacher">Teacher: <a href = {`${assignment.teacher?.email}`}>{assignment.teacher?.name}</a></div>
       {/* if this is undifined it skips the remaning chaining */}
       <div className="assignmentDetail__notes">Notes: {assignment.notes}</div>
       <div className="assignmentDetail__given">
@@ -53,6 +53,7 @@ export const AssignmentDetail = () => {
           {" "}
           Delete Assignment
         </button>
+        
         <button
           className="assignmentCreateBtn"
           onClick={() => {
