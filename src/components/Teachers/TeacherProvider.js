@@ -7,7 +7,7 @@ export const TeacherProvider = (props) => {
   const apiURL = "http://localhost:8088";
 
   const getTeachers = () => {
-    return fetch(`${apiURL}/teachers?_expand=schools`)
+    return fetch(`${apiURL}/teachers`)
       .then((res) => res.json())
       .then(setTeachers);
   };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { AssignmentContext } from "./AssignmentProvider";
 import { useHistory, useParams } from "react-router-dom";
@@ -31,8 +32,8 @@ export const AssignmentForm = () => {
   };
   const handleClickSaveAssignment = (event) => {
     event.preventDefault()
-    const userId = parseInt(assignment.userId)
-    const courseId = parseInt(assignment.courseId)
+    // const userId = parseInt(assignment.userId)
+    // const courseId = parseInt(assignment.courseId)
 
       setIsLoading (true);
       if (assignment.id) {
@@ -78,7 +79,7 @@ export const AssignmentForm = () => {
     <form onSubmit={handleClickSaveAssignment} className = "assignmentSecList">
       <h2 className= "assignmentForm_title"> New Assignment</h2>
       <fieldset>
-        <div className="form=group">
+        <div className="form_group">
           <label htmlFor="title">Assignment Title</label>
           <input
             type="text"

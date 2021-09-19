@@ -7,11 +7,35 @@ export const AssignmentProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("")
     const apiURL = "http://localhost:8088"
    
-    const getAssignments = () => {
-        return fetch(`${apiURL}/assignments?_expand=course`)
+    const getAssignments = async () => {
+        const response = await fetch(`${apiURL}/assignments?_expand=course`)
         .then(res => res.json())
-        .then(setAssignments)
+        
+        const teacherPromises=(response.map(async(assignment)=> {
+            const teacherId = assignment.course.teacherId
+            const teacher = await fetch(`${apiURL}/teachers/${teacherId}`)
+            .then(res => res.json())
+            // const newAssignment ={...assignment}
+            // newAssignment.teacher=teacherResponse
+
+            return ({...assignment, teacher})
+        }))
+        const teacherAll = await Promise.all(teacherPromises)  
+        
+        setAssignments(teacherAll)
     }
+
+    const getOneAssignment = async (assignmentId) => {
+        const assignment = await fetch(`${apiURL}/assignments/${assignmentId}?_expand=course`)
+        .then(res => res.json())
+            const teacherId = assignment.course.teacherId
+            const teacher = await fetch(`${apiURL}/teachers/${teacherId}`)
+            .then(res => res.json())
+
+            return ({...assignment, teacher})
+     
+    }
+
 
     const getAssignmentsByUserId = (userId) => {
         return fetch(`${apiURL}/assignments/${userId}`)
@@ -21,7 +45,8 @@ export const AssignmentProvider = (props) => {
     const getAssignmentsByCourseId = (courseId) => {
       return fetch(`${apiURL}/assignments/${courseId}`)
       .then(res => res.json())
-  }
+    }
+
 
     const addAssignment = async assignment => {
         const response = await fetch(`${apiURL}/assignments`, {
@@ -50,7 +75,7 @@ export const AssignmentProvider = (props) => {
       return await res.json()
     }
 
-    const deleteAssignment = (assignmentId) => {
+    const deleteAssignments = (assignmentId) => {
         return fetch((`${apiURL}/assignments/${assignmentId}`), {
             method: "DELETE"
         })
@@ -60,7 +85,7 @@ export const AssignmentProvider = (props) => {
 
     return (
         <AssignmentContext.Provider value={{
-          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignment, getAssignmentsByCourseId,searchTerms, setSearchTerms
+          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignments, getAssignmentsByCourseId,searchTerms, setSearchTerms, getOneAssignment
         }}>
             {props.children}
         </AssignmentContext.Provider>

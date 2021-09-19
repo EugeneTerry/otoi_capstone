@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useContext, useState} from "react";
 import { useHistory, Link} from "react-router-dom"
 import { AssignmentContext } from "./AssignmentProvider";

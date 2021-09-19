@@ -13,6 +13,7 @@ export const NavBar =() =>{
     <nav className="navbar bg-green text-white flex-md-nowrap p-0 shadow">
      <ul className="nav nav-pills nav-fill">
        <li className="nav_item"><Link className="nav-link" to="/">Assignments</Link></li>
+       <li className="nav_item"><Link className="nav-link" to="/schools">Schools</Link></li>
        <li className="navbar_item"><Link className="nav-link" to="/courses">Courses</Link></li>
        <li className="navbar_item"><Link className="nav-link" to="/past">Past Due Assignments</Link></li>
        <li className="navbar_item"><button className="nav-link" onClick={LogOut}>Logout</button></li>
