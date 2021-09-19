@@ -10,7 +10,7 @@ export const NavBar =() =>{
   }
   
   return(
-    <nav className="navbar bg-green text-white flex-md-nowrap p-0 shadow">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
      <ul className="nav nav-pills nav-fill">
        <li className="nav_item"><Link className="nav-link" to="/">Assignments</Link></li>
        <li className="nav_item"><Link className="nav-link" to="/schools">Schools</Link></li>

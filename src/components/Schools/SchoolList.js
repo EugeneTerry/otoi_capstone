@@ -1,30 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useContext} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import { useHistory } from "react-router-dom";
 import { SchoolContext } from "./SchoolProvider";
+import "./School.css"
 
 export const SchoolList = () => {
   const {schools, getSchools} = useContext
   (SchoolContext)
+  const currentUserId = sessionStorage.getItem("otoi_user")
   const history= useHistory()
+  const [filterSchools, setFiltered] = useState([])
 
   useEffect(() => {
     getSchools()
   }, [])
 
+  const currentUserSchool = filterSchools.filter(school =>{
+    return school.userId === parseInt(currentUserId)
+  })
+
+  useEffect(()=>{
+    setFiltered(schools)
+  }) 
+
   return(
     <>
-      <div className="schoolDivList">
-        <section className="schools">
+      <div className="schoolDiv">
+        <section className="schoolSec">
           <h2>Schools</h2>
-          {schools.map((school) =>{
+          {currentUserSchool.map((school) =>{
             return(
-              <div className="school" id ={`school--${school.id}`}>
+              <div className="schoolName" id ={`school--${school.id}`}>
                 <div className="school__name">School Name: {school.name}</div>
               </div>
             )
           })}
-          <button className="schoolBtn" onClick={() => history.push("/schools/create")}>Add New School</button>
+          <button className="button-34" onClick={() => history.push("/schools/create")}>Add New School</button>
         </section>
       </div>
     </>

@@ -47,6 +47,28 @@ export const AssignmentProvider = (props) => {
       .then(res => res.json())
     }
 
+    const markAsDone = assignmentId => {
+        return fetch(`${apiURL}/assignments/${assignmentId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({status: true})  
+        })
+        .then(getAssignments)
+    }
+
+    const markAsWorking = assignmentId => {
+        return fetch(`${apiURL}/assignments/${assignmentId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({status: false})  
+        })
+        .then(getAssignments)
+    }    
+
 
     const addAssignment = async assignment => {
         const response = await fetch(`${apiURL}/assignments`, {
@@ -85,7 +107,7 @@ export const AssignmentProvider = (props) => {
 
     return (
         <AssignmentContext.Provider value={{
-          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignments, getAssignmentsByCourseId,searchTerms, setSearchTerms, getOneAssignment
+          assignments, getAssignments, addAssignment, getAssignmentsByUserId, updateAssignment, getAssignmentById, deleteAssignments, getAssignmentsByCourseId,searchTerms, setSearchTerms, getOneAssignment, markAsDone, markAsWorking
         }}>
             {props.children}
         </AssignmentContext.Provider>

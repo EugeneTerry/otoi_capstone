@@ -26,7 +26,7 @@ export const CourseList = () => {
               </div>
             )
           })}
-          <button className="courseBtn" onClick={() => history.push("/courses/create")}>Add New Course</button>
+          <button className="button-34" onClick={() => history.push("/courses/create")}>Add New Course</button>
         </section>
       </div>
     </>
