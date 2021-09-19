@@ -1,8 +1,17 @@
+.assignmentDivList
+{
+  margin: 2;
+}
+
 .assignmentCards {
   border: 2px solid rgba(8, 137, 236, 0.171);
   margin: 1em 1em;
   padding: .5em .5em;
-  width: 75%;
+  width: 50%;
+  display:flexbox;
+  flex-wrap: wrap;
+  align-content:flex-start;
+  
 }
 
 

@@ -2,12 +2,11 @@
 import React, {useEffect, useContext, useState} from "react";
 import { useHistory, Link} from "react-router-dom"
 import { AssignmentContext } from "./AssignmentProvider";
+// import { AssignmentList } from "./AssignmentList";
 import "./Assignment.css"
 
 export const AssignmentLate = () => {
-  const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
-  const currentUserId = sessionStorage.getItem("otoi_user")
-  const [filteredAssignments, setFiltered] = useState ([])
+  const {assignments, getAssignments} = useContext(AssignmentContext)
   const [filteredLate, setFilteredLate] = useState ([])
   const history = useHistory()
 
@@ -15,21 +14,9 @@ export const AssignmentLate = () => {
     getAssignments()
   }, [])
 
-  
-  const currentUserAssignment = filteredAssignments.filter(assignment => {
-    return assignment.userId === parseInt(currentUserId)
-  })
-
   const overdueAssignments = filteredLate.filter(assignment => {
-    return assignment.dateDue === assignment.dateGiven
+    return new Date(assignment.dateDue) - new Date() < 0
   })
-
-  
-
-  useEffect(() => {
-    
-      setFiltered(assignments)
-    }, [searchTerms, assignments])
 
     useEffect(()=>{
       setFilteredLate(assignments)
@@ -40,7 +27,7 @@ export const AssignmentLate = () => {
       <div className="assignmentDivList"><h2>Past Due Assignments</h2>
         <section className="assignmentSectionList">
           
-          {currentUserAssignment.map((assignment) => {
+          {overdueAssignments.map((assignment) => {
 
             const status = assignment.started; 
             //create an if statement here for status
@@ -87,6 +74,15 @@ export const AssignmentLate = () => {
             )
           })}
           <button className="button-34" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
+
+          <button
+          className="buttonDetail"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Back to Assignments
+        </button>
           
         </section>
       </div>

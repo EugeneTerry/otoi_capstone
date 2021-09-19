@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AssignmentContext } from "./AssignmentProvider";
 import { useHistory, useParams } from "react-router-dom";
 import { CourseContext } from "../Classes/CourseProvider"
+import "./Assignment.css"
 
 export const AssignmentForm = () => {
   const {courses, getCourses} = useContext(CourseContext)
@@ -15,7 +16,7 @@ export const AssignmentForm = () => {
     dateGiven: "",
     dateDue: "",
     notes: "",
-    status:"started"
+    status:""
 
   })
 
@@ -159,13 +160,13 @@ export const AssignmentForm = () => {
         </div>
       </fieldset>
       <div className="assignmentFormBtn">
-        <button className="btn btn-primary"
+        <button className="buttonDetail"
         disabled={isLoading}
         type="submit">
           {assignmentId ? <> Save Assignment </> : <> Add Assignment</>}
         </button>
 
-        <button className="btn btn-primary returnBtn"
+        <button className="buttonDetail"
         onClick={() =>{
           history.push(`/assignments`)
         }}
