@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useContext} from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { SchoolContext } from "./SchoolProvider";
 
 export const SchoolList = () => {

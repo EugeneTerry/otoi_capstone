@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react"
 import { AssignmentContext } from "./AssignmentProvider"
 import"./Assignment.css"

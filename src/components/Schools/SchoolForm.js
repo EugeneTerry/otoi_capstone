@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useContext} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { SchoolContext } from "./SchoolProvider";
@@ -21,7 +22,6 @@ export const SchoolForm = () => {
   }
   const handleClickSaveSchool = (e) => {
     e.preventDefault()
-    
     setIsLoading (true)
     if(school.id) {
       updateSchool({

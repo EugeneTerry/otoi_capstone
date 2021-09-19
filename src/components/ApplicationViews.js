@@ -1,24 +1,33 @@
 import React from "react"
 import { Route } from "react-router-dom"
+
 import { AssignmentList } from "./Assignments/AssignmentList"
 import { AssignmentProvider } from "./Assignments/AssignmentProvider"
 import { AssignmentSearch } from "./Assignments/AssignmentSearch"
-import { UserProvider } from "./Users/UserProvider"
 import { AssignmentForm } from "./Assignments/AssignmentForm"
+import { AssignmentDetail } from "./Assignments/AssignmentDetail"
+
+import { UserProvider } from "./Users/UserProvider"
+
 import { CourseProvider } from "./Classes/CourseProvider"
 import { CourseList } from "./Classes/CourseList"
+import { CourseForm } from "./Classes/CourseForm"
+
 import { SchoolProvider } from "./Schools/SchoolProvider"
 import { SchoolList } from "./Schools/SchoolList"
 import { SchoolForm } from "./Schools/SchoolForm"
-import { AssignmentDetail } from "./Assignments/AssignmentDetail"
+
+import { TeacherProvider } from "./Teachers/TeacherProvider"
 
 export const ApplicationViews = () => {
   return (
     <>
     
     <UserProvider>
-      <CourseProvider>
-      <AssignmentProvider>
+      <TeacherProvider>
+        <CourseProvider>
+        <AssignmentProvider>
+        
         <Route exact path="/">
           <AssignmentList/>
         </Route>
@@ -40,7 +49,14 @@ export const ApplicationViews = () => {
       <Route exact path="/courses"> 
         <CourseList/>
       </Route>
+      <Route exact path="/courses/create">
+        <CourseForm/>
+      </Route>
+      <Route exact path="/courses/edit/:courseId(\d+)">
+        <CourseForm/>
+      </Route>
       </CourseProvider>
+      </TeacherProvider>
     </UserProvider>
 
     <SchoolProvider>

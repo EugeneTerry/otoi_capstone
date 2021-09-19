@@ -20,7 +20,7 @@ export const SchoolProvider = (props) => {
   const addSchool = async school => {
     const response = await fetch(`${apiURL}/schools`, {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(school),

@@ -1,40 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { AssignmentContext } from "./AssignmentProvider";
 import { useParams, useHistory } from "react-router-dom";
 
 export const AssignmentDetail = () => {
-  const { assignments, getAssignments, deleteAssignments } =
+  const { getOneAssignment, deleteAssignments } =
     useContext(AssignmentContext);
   const [assignment, setAssignment] = useState({course:{}});
   const history = useHistory();
 
   const { assignmentId } = useParams();
 
+
   useEffect(() => {
-    getAssignments().then(() => {
-      const thisAssignment = assignments.find(
-        (a) => a.id === parseInt(assignmentId)
-      ) || {course: {}};
-      setAssignment(thisAssignment);
-    });
-  }, [assignmentId]);
+    getOneAssignment(assignmentId)
+    .then((newAssignment)=>{
+      setAssignment(newAssignment)
+    })
+  }, []);
 
   const handleRelease = () => {
     deleteAssignments(assignment.id).then(() => {
       history.push("/assignments");
     });
   };
-
-  useEffect(() => {
-    if(assignment) {
-      setAssignment(assignment)
-    } else {
-      const thisAssignment = assignments.find((a) =>a.id === parseInt(assignmentId))
-      setAssignment(thisAssignment)
-    }
-
-  }, [assignmentId])
-
 
 
   return (
@@ -43,6 +32,8 @@ export const AssignmentDetail = () => {
       <div className="assignmentDetail__course">
         Course: {assignment.course.name}
       </div>
+      <div className="assignmentDetail__teacher">Teacher: <a href = {assignment.teacher?.email}>{assignment.teacher?.name}</a></div>
+      {/* if this is undifined it skips the remaning chaining */}
       <div className="assignmentDetail__notes">Notes: {assignment.notes}</div>
       <div className="assignmentDetail__given">
         Date Assigned: {assignment.dateGiven}
@@ -73,7 +64,7 @@ export const AssignmentDetail = () => {
         <button
           className="assignmentsBtn"
           onClick={() => {
-            history.push("/assignments");
+            history.push("/");
           }}
         >
           Back to Assignments
