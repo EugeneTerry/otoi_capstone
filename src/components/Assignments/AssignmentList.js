@@ -3,6 +3,7 @@ import React, {useEffect, useContext, useState} from "react";
 import { useHistory, Link} from "react-router-dom"
 import { AssignmentContext } from "./AssignmentProvider";
 import "./Assignment.css"
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const AssignmentList = () => {
   const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
@@ -16,7 +17,7 @@ export const AssignmentList = () => {
 
   const {setSearchTerms} = useContext(AssignmentContext)
   const currentUserAssignment = filteredAssignments.filter(assignment => {
-    return assignment.userId === parseInt(currentUserId)||assignment.dateDue === assignment.dateGiven
+    return assignment.userId === parseInt(currentUserId)
   })
 
   useEffect(() => {setSearchTerms("")}, [])
@@ -34,7 +35,7 @@ export const AssignmentList = () => {
     <>
       <div className="assignmentDivList">
         <section className="assignmentSectionList">
-          <div className="assignmentSearch">Assignments
+          <div className="assignmentSearch"><h2>Assignments</h2>
             <input type="text"
             className="input--wide"
             onKeyUp={(e) => setSearchTerms(e.currentTarget.value)}
@@ -45,7 +46,7 @@ export const AssignmentList = () => {
             const status = assignment.started; 
             //create an if statement here for status
             return (
-              <div className="linkDivAssignmentList"
+              <div className="assignmentCards"
                 key={`assignmentDivList=${assignment.id}`}>
                 <Link to={`/assignments/detail/${assignment.id}`}
                   key={assignment.id}
@@ -85,8 +86,9 @@ export const AssignmentList = () => {
               </div>
             )
           })}
-          <button className="assignmentBtn" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
-          
+          <div>
+          <button className="button-34" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
+          </div>
         </section>
       </div>
     </>

@@ -4,48 +4,49 @@ import { useHistory, Link} from "react-router-dom"
 import { AssignmentContext } from "./AssignmentProvider";
 import "./Assignment.css"
 
-export const AssignmentList = () => {
+export const AssignmentLate = () => {
   const {assignments, getAssignments, searchTerms} = useContext(AssignmentContext)
   const currentUserId = sessionStorage.getItem("otoi_user")
   const [filteredAssignments, setFiltered] = useState ([])
+  const [filteredLate, setFilteredLate] = useState ([])
   const history = useHistory()
 
   useEffect(() => {
     getAssignments()
   }, [])
 
-  const {setSearchTerms} = useContext(AssignmentContext)
+  
   const currentUserAssignment = filteredAssignments.filter(assignment => {
-    return assignment.userId === parseInt(currentUserId)||assignment.dateDue > new Date()
+    return assignment.userId === parseInt(currentUserId)
   })
 
-  useEffect(() => {setSearchTerms("")}, [])
+  const overdueAssignments = filteredLate.filter(assignment => {
+    return assignment.dateDue === assignment.dateGiven
+  })
+
+  
 
   useEffect(() => {
-    if(searchTerms !=="") {
-      const subset = assignments.filter(assignment => assignment.title.toLowerCase().includes(searchTerms.toLowerCase())||assignment.course.name.toLowerCase().includes(searchTerms.toLowerCase())||assignment.notes.toLowerCase().includes(searchTerms.toLowerCase()))
-      setFiltered(subset)
-    } else {
+    
       setFiltered(assignments)
-    }
     }, [searchTerms, assignments])
+
+    useEffect(()=>{
+      setFilteredLate(assignments)
+    })
 
   return (
     <>
-      <div className="assignmentDivList">
+      <div className="assignmentDivList"><h2>Past Due Assignments</h2>
         <section className="assignmentSectionList">
-          <div className="assignmentSearch">Assignments
-            <input type="text"
-            className="input--wide"
-            onKeyUp={(e) => setSearchTerms(e.currentTarget.value)}
-            placeholder="🔍" />
-          </div>
+          
           {currentUserAssignment.map((assignment) => {
 
             const status = assignment.started; 
             //create an if statement here for status
             return (
-              <div className="linkDivAssignmentList"
+              
+              <div className="assignmentCards"
                 key={`assignmentDivList=${assignment.id}`}>
                 <Link to={`/assignments/detail/${assignment.id}`}
                   key={assignment.id}
@@ -85,7 +86,7 @@ export const AssignmentList = () => {
               </div>
             )
           })}
-          <button className="assignmentBtn" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
+          <button className="button-34" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
           
         </section>
       </div>

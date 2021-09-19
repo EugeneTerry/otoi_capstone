@@ -7,7 +7,9 @@ export const SchoolForm = () => {
   const {addSchool, updateSchool, getSchoolById} =useContext(SchoolContext)
 
   const[school, setSchool] =useState({
-    name: ""
+    id: 0,
+    name: "",
+    userId: 0
 
   })
   const history=useHistory();
@@ -26,10 +28,12 @@ export const SchoolForm = () => {
     if(school.id) {
       updateSchool({
         id: school.id,
-        name: school.name
+        name: school.name,
+        userId: parseInt(school.userId)
       }).then(() => history.push(`/schools/detail/${school.id}`))
     } else{
       addSchool({
+        userId: (parseInt(sessionStorage.getItem("otoi_user"))),
         name: school.name
       }).then(() => history.push("/schools"))
     }
