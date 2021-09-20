@@ -17,6 +17,12 @@ export const CourseProvider = (props) => {
   return await res.json()
 }
 
+const getCoursesByUserId = (userId) => {
+  return fetch(`${apiURL}/assignments/${userId}`)
+  .then(res => res.json())
+}
+
+
   const getCoursesByTeacherId = (teacherId) => {
     return fetch(`${apiURL}/courses/${teacherId}`).then((res) => res.json());
   };
@@ -38,7 +44,8 @@ export const CourseProvider = (props) => {
         addCourse,
         getCoursesByTeacherId,
         getCourses,
-        getCourseById
+        getCourseById,
+        getCoursesByUserId
       }}
     >
       {props.children}

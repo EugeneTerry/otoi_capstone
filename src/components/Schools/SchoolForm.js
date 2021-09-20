@@ -14,7 +14,6 @@ export const SchoolForm = () => {
   })
   const history=useHistory();
   const [isLoading, setIsLoading] =useState(true)
-
   const{schoolId} =useParams()
 
   const handleControlInputChange = (e) => {
@@ -24,6 +23,7 @@ export const SchoolForm = () => {
   }
   const handleClickSaveSchool = (e) => {
     e.preventDefault()
+    
     setIsLoading (true)
     if(school.id) {
       updateSchool({

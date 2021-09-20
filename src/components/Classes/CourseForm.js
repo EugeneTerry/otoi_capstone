@@ -10,7 +10,8 @@ export const CourseForm =()=>{
 
   const [course, setCourse] = useState({
     name: "",
-    teacherId: 0
+    teacherId: 0,
+    userId: 0
   })
   const history =useHistory();
   const [isLoading, setIsLoading] =useState(true)
@@ -23,20 +24,21 @@ export const CourseForm =()=>{
   }
   const handleClickSaveCourse = (e) => {
     e.preventDefault()
-    // const teacherId = parseInt(course.teacherId)
 
     setIsLoading (true)
     if (course.id) {
       updateCourse({
         id: course.id,
         name: course.name,
-        teacherId: parseInt(course.teacherId)
+        teacherId: parseInt(course.teacherId),
+        userId: parseInt(course.userId)
       })
       .then(()=>{
         history.push(`/courses/detail/${course.id}`)
       })
     } else {
       addCourse({
+        userId: (parseInt(sessionStorage.getItem("otoi_user"))),
         name: course.name,
         teacherId: parseInt(course.teacherId)
       })

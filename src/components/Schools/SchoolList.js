@@ -30,7 +30,7 @@ export const SchoolList = () => {
           <h2>Schools</h2>
           {currentUserSchool.map((school) =>{
             return(
-              <div className="schoolName" id ={`school--${school.id}`}>
+              <div className="schoolName" key ={`school--${school.id}`}>
                 <div className="school__name">School Name: {school.name}</div>
               </div>
             )

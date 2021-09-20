@@ -20,7 +20,7 @@ export const CourseList = () => {
           <h2>Courses</h2>
           {courses.map((course) =>{
             return(
-              <div className="course" id = {`course--${course.id}`}>
+              <div className="course" key = {`course--${course.id}`}>
                 <div className="course__name">{course.name}</div>
                 <div className="course__teacherName">{course.teacherId.name}</div>
               </div>
