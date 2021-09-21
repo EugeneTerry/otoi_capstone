@@ -31,7 +31,7 @@ export const TeacherList =()=>{
               <div className="teacherName" key ={`teacher--${teacher.id}`}>
                 <div className="teacher__name">Name: {teacher.name}</div>
                 <div className="teacher__email">Email: {teacher.email}</div>
-                <div className="teacher__name">School: {teacher.schoolId.name}</div>
+                <div className="teacher__name">School: {teacher.school.name}</div>
               </div>
               
             )

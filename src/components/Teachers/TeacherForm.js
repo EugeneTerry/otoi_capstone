@@ -42,6 +42,7 @@ export const TeacherForm = () => {
       addTeacher({
         userId: parseInt(sessionStorage.getItem("otoi_user")),
         name: teacher.name,
+        email: teacher.email,
         schoolId: parseInt(teacher.schoolId),
       }).then(() => history.push("/teachers"));
     }
@@ -79,7 +80,7 @@ export const TeacherForm = () => {
       </fieldset>
       <fieldset>
         <div className="form_group">
-          <label htmlFor="name">Teacher Email</label>
+          <label htmlFor="email">Teacher Email</label>
           <input
             type="text"
             id="email"
