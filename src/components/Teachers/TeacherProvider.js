@@ -20,6 +20,11 @@ export const TeacherProvider = (props) => {
     .then(res => res.json())
   }
 
+  const getTeachersByUserId = (userId) => {
+    return fetch(`${apiURL}/teachers/${userId}`)
+    .then(res => res.json())
+  }
+
   const addTeacher = (teacherObj) => {
     return fetch(`${apiURL}/teachers`, {
       method: "POST",
@@ -33,7 +38,7 @@ export const TeacherProvider = (props) => {
   };
     return (
       <TeacherContext.Provider value ={{
-        teachers, addTeacher, getTeacherById, getTeachers, getTeachersBySchoolId
+        teachers, addTeacher, getTeacherById, getTeachers, getTeachersBySchoolId, getTeachersByUserId
       }}>
         {props.children}
       </TeacherContext.Provider>
