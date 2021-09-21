@@ -1,70 +1,69 @@
-import React, {useState, useEffect, useContext} from "react";
-import { TeacherContext, TeacherProvider } from "./TeacherProvider";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useContext } from "react";
+import { TeacherContext } from "./TeacherProvider";
 import { useHistory, useParams } from "react-router-dom";
-import {SchoolContext} from "../Schools/SchoolProvider"
+import { SchoolContext } from "../Schools/SchoolProvider";
 
-export const TeacherForm =()=>{
-  const {schools, getSchools} =useContext(SchoolContext)
-  const {addTeacher, updateTeacher, getTeacherById} =useContext(TeacherContext)
+export const TeacherForm = () => {
+  const { schools, getSchools } = useContext(SchoolContext);
+  const { addTeacher, updateTeacher, getTeacherById } =
+    useContext(TeacherContext);
 
   const [teacher, setTeacher] = useState({
     name: "",
     email: "",
     schoolId: 0,
-    userId: 0
-  })
-  const history =useHistory();
-  const [isLoading, setIsLoading] =useState(true)
-  const{teacherId} =useParams()
+    userId: 0,
+  });
+  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const { teacherId } = useParams();
 
   const handleControlledInputChange = (e) => {
     const newTeacher = { ...teacher };
     newTeacher[e.target.id] = e.target.value;
     setTeacher(newTeacher);
-  }
+  };
   const handleClickSaveTeacher = (e) => {
-    e.preventDefault()
-  
-    setIsLoading (true)
+    e.preventDefault();
+
+    setIsLoading(true);
     if (teacher.id) {
       updateTeacher({
         id: teacher.id,
         name: teacher.name,
         email: teacher.email,
         schoolId: parseInt(teacher.schoolId),
-        userId: parseInt(teacher.userId)
-      })
-      .then(()=>{
-        history.push(`/teachers/detail/${teacher.id}`)
-      })
+        userId: parseInt(teacher.userId),
+      }).then(() => {
+        history.push(`/teachers/detail/${teacher.id}`);
+      });
     } else {
       addTeacher({
-        userId: (parseInt(sessionStorage.getItem("otoi_user"))),
+        userId: parseInt(sessionStorage.getItem("otoi_user")),
         name: teacher.name,
-        schoolId: parseInt(teacher.schoolId)
-      })
-      .then(() => history.push("/teachers"))
+        schoolId: parseInt(teacher.schoolId),
+      }).then(() => history.push("/teachers"));
     }
-  }
+  };
   useEffect(() => {
     getSchools().then(() => {
-      if(teacherId) {
+      if (teacherId) {
         getTeacherById(teacherId).then((teacher) => {
-          setTeacher(teacher)
-          setIsLoading(false)
-        })
+          setTeacher(teacher);
+          setIsLoading(false);
+        });
       } else {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    })
-  }, [])
+    });
+  }, []);
 
-  return(
-    <form onSubmit={handleClickSaveTeacher}
-    className="teacherSecList">
+  return (
+    <form onSubmit={handleClickSaveTeacher} className="teacherSecList">
       <h2 className="teacherForm_title">New Teacher</h2>
       <fieldset>
-      <div className="form_group">
+        <div className="form_group">
           <label htmlFor="name">Teacher Name</label>
           <input
             type="text"
@@ -72,17 +71,17 @@ export const TeacherForm =()=>{
             required
             autoFocus
             className="form-control"
-            placeholder="Course Name"
+            placeholder="Teacher Name"
             value={teacher.name}
             onChange={handleControlledInputChange}
           />
         </div>
       </fieldset>
       <fieldset>
-      <div className="form_group">
+        <div className="form_group">
           <label htmlFor="name">Teacher Email</label>
           <input
-            type="email"
+            type="text"
             id="email"
             required
             autoFocus
@@ -96,59 +95,39 @@ export const TeacherForm =()=>{
       <fieldset>
         <div className="form-group">
           <label htmlFor="schoolId" className="label_teacherForm">
-            {" "} School: {" "}
-            </label>
-            <select
+            {" "}
+            School:{" "}
+          </label>
+          <select
             school="schoolId"
             id="schoolId"
             className="form-control"
             value={teacher.schoolId}
-            onChange= {handleControlledInputChange}
-            >
-              <option value="0"> Select School </option>
-              {
-                schools.map(school => (
-                  <option key={school.id} value={school.id}>
-                    {school.name}
-                  </option>
-                ))
-              }
-            </select>          
+            onChange={handleControlledInputChange}
+          >
+            <option value="0"> Select School </option>
+            {schools.map((school) => (
+              <option key={school.id} value={school.id}>
+                {school.name}
+              </option>
+            ))}
+          </select>
         </div>
       </fieldset>
       <div className="teacherFormBtn">
-        <button className="btn btn-primary"
-        disabled={isLoading}
-        type="submit">
+        <button className="btn btn-primary" disabled={isLoading} type="submit">
           {teacherId ? <> Save Teacher </> : <> Add Teacher</>}
         </button>
 
-        <button className="btn btn-primary returnBtn"
-        onClick={() =>{
-          history.push(`/teachers`)
-        }}
+        <button
+          className="btn btn-primary returnBtn"
+          onClick={() => {
+            history.push(`/teachers`);
+          }}
         >
           Back to Teachers
         </button>
-
       </div>
-
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  )
-
-}
+  );
+};
