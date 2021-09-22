@@ -36,9 +36,17 @@ export const TeacherProvider = (props) => {
       .then((res) => res.json()
       .then(getTeachers));
   };
+
+  const deleteTeachers = (teacherId) => {
+    return fetch((`${apiURL}/teachers/${teacherId}`), {
+        method: "DELETE"
+    })
+    .then(getTeachers)
+}
+
     return (
       <TeacherContext.Provider value ={{
-        teachers, addTeacher, getTeacherById, getTeachers, getTeachersBySchoolId, getTeachersByUserId
+        teachers, addTeacher, getTeacherById, getTeachers, getTeachersBySchoolId, getTeachersByUserId, deleteTeachers
       }}>
         {props.children}
       </TeacherContext.Provider>
