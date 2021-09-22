@@ -31,7 +31,7 @@ export const SchoolList = () => {
           {currentUserSchool.map((school) =>{
             return(
               <div className="schoolName" key ={`school--${school.id}`}>
-                <div className="school__name">School Name: {school.name}</div>
+                <div className="school__name"> <b>{school.name}</b></div>
               </div>
             )
           })}

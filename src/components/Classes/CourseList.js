@@ -30,7 +30,7 @@ export const CourseList = () => {
           {currentUserCourse.map((course) =>{
             return(
               <div className="course" key = {`course--${course.id}`}>
-                <div className="course__name">{course.name}</div>
+                <div className="course__name"><b>{course.name}</b></div>
                 <div className="course__teacherName">{course.teacherId.name}</div>
               </div>
             )

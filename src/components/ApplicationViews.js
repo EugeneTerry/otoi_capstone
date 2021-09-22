@@ -19,6 +19,8 @@ import { SchoolList } from "./Schools/SchoolList";
 import { SchoolForm } from "./Schools/SchoolForm";
 
 import { TeacherProvider } from "./Teachers/TeacherProvider";
+import { TeacherForm } from "./Teachers/TeacherForm";
+import { TeacherList } from "./Teachers/TeacherList";
 
 export const ApplicationViews = () => {
   return (
@@ -26,50 +28,58 @@ export const ApplicationViews = () => {
       <UserProvider>
         <TeacherProvider>
           <CourseProvider>
-            <AssignmentProvider>
-              <Route exact path="/">
-                <AssignmentList />
+            <SchoolProvider>
+              <AssignmentProvider>
+                <Route exact path="/">
+                  <AssignmentList />
+                </Route>
+                <Route exact path="/assignments">
+                  <AssignmentList />
+                </Route>
+                <Route exact path="/past">
+                  <AssignmentLate />
+                </Route>
+                <Route exact path="/assignments/create">
+                  <AssignmentForm />
+                </Route>
+                <Route exact path="/assignments/edit/:assignmentId(\d+)">
+                  <AssignmentForm />
+                </Route>
+                <Route exact path="/assignments/detail/:assignmentId(\d+)">
+                  <AssignmentDetail />
+                </Route>
+              </AssignmentProvider>
+              <Route exact path="/courses">
+                <CourseList />
               </Route>
-              <Route exact path="/assignments">
-               <AssignmentList />
+              <Route exact path="/teachers">
+                <TeacherList />
               </Route>
-              <Route exact path="/past">
-               <AssignmentLate />
+              <Route exact path="/courses/create">
+                <CourseForm />
               </Route>
-              <Route exact path="/assignments/create">
-                <AssignmentForm />
+              <Route exact path="/courses/edit/:courseId(\d+)">
+                <CourseForm />
               </Route>
-              <Route exact path="/assignments/edit/:assignmentId(\d+)">
-                <AssignmentForm />
+              <Route exact path="/teachers/edit/:teacherId(\d+)">
+                <TeacherForm />
               </Route>
-              <Route exact path="/assignments/detail/:assignmentId(\d+)">
-                <AssignmentDetail />
+              <Route exact path="/teachers/create">
+                <TeacherForm />
               </Route>
-            </AssignmentProvider>
-            <Route exact path="/courses">
-              <CourseList />
-            </Route>
-            <Route exact path="/courses/create">
-              <CourseForm />
-            </Route>
-            <Route exact path="/courses/edit/:courseId(\d+)">
-              <CourseForm />
-            </Route>
+              <Route exact path="/schools">
+                <SchoolList />
+              </Route>
+              <Route exact path="/schools/create">
+                <SchoolForm />
+              </Route>
+              <Route exact path="/schools/edit/:schoolId(\d+)">
+                <SchoolForm />
+              </Route>
+            </SchoolProvider>
           </CourseProvider>
         </TeacherProvider>
       </UserProvider>
-
-      <SchoolProvider>
-        <Route exact path="/schools">
-          <SchoolList />
-        </Route>
-        <Route exact path="/schools/create">
-          <SchoolForm />
-        </Route>
-        <Route exact path="/schools/edit/:schoolId(\d+)">
-          <SchoolForm />
-        </Route>
-      </SchoolProvider>
     </>
   );
 };

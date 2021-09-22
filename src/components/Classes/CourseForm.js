@@ -80,7 +80,8 @@ export const CourseForm =()=>{
       <fieldset>
         <div className="form-group">
           <label htmlFor="teacherId" className="label_courseForm">
-            {" "} Teacher: {" "}
+            {" "} 
+            Teacher: {" "}
             </label>
             <select
             teacher="teacherId"

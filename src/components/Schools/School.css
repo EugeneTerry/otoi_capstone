@@ -1,3 +1,5 @@
+
+
 .schoolName {
   border: 2px solid rgba(8, 137, 236, 0.171);
   margin: .4em .4em;
@@ -27,4 +29,9 @@
   word-break: break-word;
   border: 0;
   margin: 1em;
+}
+
+.schoolDiv
+{
+  
 }
