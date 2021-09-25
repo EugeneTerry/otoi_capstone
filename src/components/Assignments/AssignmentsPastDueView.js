@@ -5,6 +5,8 @@ import { AssignmentContext } from "./AssignmentProvider";
 // import { AssignmentList } from "./AssignmentList";
 import "./Assignment.css"
 
+
+
 export const AssignmentLate = () => {
   const {assignments, getAssignments} = useContext(AssignmentContext)
   const [filteredLate, setFilteredLate] = useState ([])
@@ -24,7 +26,7 @@ export const AssignmentLate = () => {
 
   return (
     <>
-      <div className="assignmentDivList"><h2>Past Due Assignments</h2>
+      <div className="component-wrapper"><h2>Past Due Assignments</h2>
         <section className="assignmentSectionList">
           
           {overdueAssignments.map((assignment) => {
@@ -68,7 +70,7 @@ export const AssignmentLate = () => {
                   key={`assignmentStartedList__${assignment.id}`}
                   className="assignmentStartedListInfo"
                 >
-                  Status: {status}
+                  Days Overdue: {Math.floor((new Date() - new Date(assignment.dateDue))/ (1000 * 60 * 60 * 24))}
                 </div>
               </div>
             )

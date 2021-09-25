@@ -24,7 +24,7 @@ export const CourseList = () => {
 
   return (
     <>
-      <div className="courseDivList"><h2>Courses</h2>
+      <div className="component-wrapper"><h2>Courses</h2>
         <section
         className="courses">          
           {currentUserCourse.map((course) =>{

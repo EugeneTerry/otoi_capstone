@@ -48,7 +48,7 @@ export const AssignmentList = () => {
 
   return (
     <>
-      <div className="assignmentDivList">
+      <div className="component-wrapper">
         <section className="assignmentSectionList">
           <div className="assignmentSearch">
             <h2 className="assignmentDivList">Assignments</h2>
@@ -106,7 +106,7 @@ export const AssignmentList = () => {
                   <div className="statusCheck">
                     {assignment.status ? (
                       <button
-                        className="mark-as-done"
+                        className="mark-done"
                         onClick={() => {
                           markAsWorking(assignment.id).then(() =>
                             history.push("/assignments")
@@ -117,7 +117,7 @@ export const AssignmentList = () => {
                       </button>
                     ) : (
                       <button
-                        className="mark-As-working"
+                        className="mark-working"
                         onClick={() => {
                           markAsDone(assignment.id).then(() =>
                             history.push("/assignments")

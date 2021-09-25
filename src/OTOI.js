@@ -4,9 +4,10 @@ import {NavBar} from "./nav/NavBar"
 import { ApplicationViews } from "./components/ApplicationViews"
 import {Login} from "./components/auth/Login"
 import {Register} from "./components/auth/Register"
+import { Wrapper } from "./components/Styles/Globals"
 
 export const OTOI = () => (
-  <>
+  <Wrapper>
     <Route
       render={() => {
         if (sessionStorage.getItem("otoi_user")) {
@@ -28,5 +29,5 @@ export const OTOI = () => (
     <Route path="/register">
       <Register />
     </Route>
-  </>
+  </Wrapper>
 )
