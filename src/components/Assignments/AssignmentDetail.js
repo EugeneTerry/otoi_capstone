@@ -49,12 +49,12 @@ export const AssignmentDetail = () => {
         <div> Done: {assignment.status}
         <div className="statusCheck">
                     {assignment.status?
-                    <button className="mark-as-done" onClick={()=>{
+                    <button className="mark-done" onClick={()=>{
                       markAsWorking(assignment.id)
                       .then(()=> history.push(`/assignments/detail/${assignment.id}`))}}>
                         👍
                       </button>: 
-                      <button className="mark-As-working" onClick={()=> {markAsDone(assignment.id)
+                      <button className="mark-working" onClick={()=> {markAsDone(assignment.id)
                       .then(()=> history.push(`/assignments/detail/${assignment.id}`))}}>👎</button>}
                   </div>
          </div>

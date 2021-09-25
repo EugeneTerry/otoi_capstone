@@ -1,7 +1,18 @@
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
+import styled from "styled-components";
 
+
+const LoginForm = styled.main`
+width: 50%;
+    border: 1px solid #009A9C;
+    border-radius: 10px;
+    padding: 47px 100px;
+    text-align: center;
+    margin: auto;
+   
+`
 
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({ email: "" })
@@ -41,7 +52,7 @@ export const Login = () => {
 
     return (
         <div className="login-body">
-        <main className="container--login">
+        <LoginForm className="container--login">
             <dialog className="dialog dialog--auth" open={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => setExistDialog(false)}>Close</button>
@@ -70,7 +81,7 @@ export const Login = () => {
             <section className="link--register">
                 <Link to="/register" className="register">Register for an account</Link>
             </section>
-        </main>
+        </LoginForm>
         </div>
     )
 }

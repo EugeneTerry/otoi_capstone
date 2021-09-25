@@ -25,7 +25,7 @@ export const SchoolList = () => {
 
   return(
     <>
-      <div className="schoolDiv">
+      <div className="component-wrapper">
         <section className="schoolSec">
           <h2>Schools</h2>
           {currentUserSchool.map((school) =>{
