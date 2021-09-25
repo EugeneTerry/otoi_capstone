@@ -27,7 +27,7 @@ export const AssignmentLate = () => {
   return (
     <>
       <div className="component-wrapper"><h2>Past Due Assignments</h2>
-        <section className="assignmentSectionList">
+        <section className="cardContainer">
           
           {overdueAssignments.map((assignment) => {
 
@@ -75,6 +75,8 @@ export const AssignmentLate = () => {
               </div>
             )
           })}
+          
+        </section>
           <button className="button-34" onClick={() => history.push("/assignments/create")}>Add New Assignment</button>
 
           <button
@@ -85,8 +87,6 @@ export const AssignmentLate = () => {
         >
           Back to Assignments
         </button>
-          
-        </section>
       </div>
     </>
   )

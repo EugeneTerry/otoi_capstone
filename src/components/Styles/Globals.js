@@ -36,4 +36,9 @@ export const Wrapper=styled.body`
   .login-body{
     padding-top: 100px;
   }
+
+  .cardContainer{
+    display: flex;
+    flex-flow: row wrap;
+  }
   `

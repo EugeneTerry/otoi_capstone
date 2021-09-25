@@ -39,8 +39,8 @@ export const TeacherList =()=>{
   return(
     <>
       <div className="component-wrapper">
-        <section className="teacherSec">
           <h2>Teachers</h2>
+        <section className="cardContainer">
           {currentUserTeacher.map((teacher) =>{
             return(
               <div className="teacherCards" key ={`teacher--${teacher.id}`}>
@@ -54,8 +54,8 @@ export const TeacherList =()=>{
               </div>                           
             )
           })}
-          <button className="button-34" onClick={() => history.push("/teachers/create")}>Add New Teacher</button>
         </section>
+          <button className="button-34" onClick={() => history.push("/teachers/create")}>Add New Teacher</button>
       </div>
     </>
   )

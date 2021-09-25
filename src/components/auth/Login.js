@@ -59,7 +59,9 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>OTOI</h1>
+                    <div className="nav-link-logo">
+                    <img src="../OTOI_logo.png" alt="OTOI icon" id="logo"/>
+                    </div>
                     <h4>Please sign in</h4>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
