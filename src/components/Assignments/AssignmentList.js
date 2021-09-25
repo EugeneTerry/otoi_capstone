@@ -59,6 +59,7 @@ export const AssignmentList = () => {
               placeholder="🔍"
             />
           </div>
+          <div className="cardContainer">
           {currentUserAssignment.map((assignment) => {
             return (
               <div
@@ -132,6 +133,7 @@ export const AssignmentList = () => {
               </div>
             );
           })}
+          </div>
           <div>
             <button
               className="button-34"

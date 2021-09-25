@@ -28,6 +28,7 @@ export const SchoolList = () => {
       <div className="component-wrapper">
         <section className="schoolSec">
           <h2>Schools</h2>
+          <div className="cardContainer">
           {currentUserSchool.map((school) =>{
             return(
               <div className="schoolName" key ={`school--${school.id}`}>
@@ -35,6 +36,7 @@ export const SchoolList = () => {
               </div>
             )
           })}
+          </div>
           <button className="button-34" onClick={() => history.push("/schools/create")}>Add New School</button>
         </section>
       </div>

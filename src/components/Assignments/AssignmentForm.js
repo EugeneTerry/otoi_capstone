@@ -8,6 +8,8 @@ import "./Assignment.css"
 export const AssignmentForm = () => {
   const {courses, getCourses} = useContext(CourseContext)
   const {addAssignment, updateAssignment, getAssignmentById} = useContext(AssignmentContext)
+  const [filterCourses, setFiltered] = useState([])
+  const currentUserId = sessionStorage.getItem("otoi_user")
   
   const [assignment, setAssignment] =useState({
     title: "",
@@ -61,7 +63,10 @@ export const AssignmentForm = () => {
         }).then(() => history.push("/assignments"))
       }
     
-  }
+      
+      }
+
+  
   useEffect(() => {
     getCourses().then(() => {
       if(assignmentId) {
@@ -74,6 +79,16 @@ export const AssignmentForm = () => {
       }
     })
   }, [])
+
+    const currentUserCourse = filterCourses.filter(course =>{   
+      return course.userId === parseInt(currentUserId) 
+
+
+    })
+
+    useEffect(()=>{
+      setFiltered(courses)
+    }) 
 
   return (
     <form onSubmit={handleClickSaveAssignment} className = "assignmentSecList">
@@ -107,11 +122,13 @@ export const AssignmentForm = () => {
             >
               <option value="0"> Select Course </option>
               {
-                courses.map((course) => (
+                currentUserCourse.map((course) => (
+                  
                   <option key={course.id} value={course.id}>
                     {course.name}
-                  </option>
-                ))
+                    
+                  </option>)
+                )
               }
             </select>          
         </div>

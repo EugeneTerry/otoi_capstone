@@ -25,8 +25,8 @@ export const NavBar =() =>{
   }
   
   return(
-    <NavLinks className="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="nav-link-logo">
+    <NavLinks className="navbar navbar-expand-md navbar-light bg-light">
+      <div className="nav-link-logo">
           <img src="../OTOI_navicon02.png" alt="OTOI icon" id="logo"/>
         </div>
      <ul className="nav nav-pills nav-fill">
