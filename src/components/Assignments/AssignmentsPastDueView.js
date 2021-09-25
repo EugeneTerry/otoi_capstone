@@ -31,7 +31,7 @@ export const AssignmentLate = () => {
           
           {overdueAssignments.map((assignment) => {
 
-            const status = assignment.started; 
+            
             //create an if statement here for status
             return (
               
