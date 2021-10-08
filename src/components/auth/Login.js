@@ -5,10 +5,10 @@ import styled from "styled-components";
 
 
 const LoginForm = styled.main`
-width: 50%;
+width: 75%;
     border: 1px solid #009A9C;
     border-radius: 10px;
-    padding: 47px 100px;
+    padding: 50px 100px;
     text-align: center;
     margin: auto;
    

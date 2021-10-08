@@ -35,6 +35,7 @@ export const Wrapper=styled.body`
 
   .login-body{
     padding-top: 100px;
+    text-alignment: center;
   }
 
   .cardContainer{
