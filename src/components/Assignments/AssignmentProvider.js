@@ -5,7 +5,7 @@ export const AssignmentContext = createContext()
 export const AssignmentProvider = (props) => {
     const [assignments, setAssignments] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
-    const apiURL = "http://localhost:8088"
+    const apiURL = "https://git.heroku.com/otoi-api.git"
    
     const getAssignments = async () => {
         const response = await fetch(`${apiURL}/assignments?_expand=course`)

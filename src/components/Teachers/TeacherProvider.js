@@ -4,7 +4,7 @@ export const TeacherContext = createContext();
 
 export const TeacherProvider = (props) => {
   const [teachers, setTeachers] = useState([]);
-  const apiURL = "http://localhost:8088";
+  const apiURL = "https://git.heroku.com/otoi-api.git";
 
   const getTeachers = () => {
     return fetch(`${apiURL}/teachers?_expand=school`)
