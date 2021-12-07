@@ -17,7 +17,7 @@ width: 75%;
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({ email: "" })
     const [existDialog, setExistDialog] = useState(false)
-    const apiURL = "https://git.heroku.com/otoi-api.git"
+    const apiURL = "https://otoi-api.herokuapp.com"
 
     const history = useHistory()
 

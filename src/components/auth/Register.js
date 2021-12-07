@@ -7,7 +7,7 @@ export const Register = () => {
 
     const [registerUser, setRegisterUser] = useState({ name: "", email: "" })
     const [conflictDialog, setConflictDialog] = useState(false)
-    const apiURL = "https://git.heroku.com/otoi-api.git"
+    const apiURL = "https://otoi-api.herokuapp.com"
 
     const history = useHistory()
 
