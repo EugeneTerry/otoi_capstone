@@ -3,7 +3,7 @@ import React, {createContext, useState} from "react";
 export const UserContext = createContext()
 export const UserProvider = (props) => {
   const[users, setUsers] = useState([])
-  const apiURL = "https://git.heroku.com/otoi-api.git"
+  const apiURL = "https://otoi-api.herokuapp.com"
 
   const getUsers = () => {
     return fetch(`${apiURL}/users`)
